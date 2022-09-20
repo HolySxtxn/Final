@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link href="/css/input.css" rel="stylesheet">
+  <title>Фильтрация статусов</title>
+</head>
+<body>
+<div th:insert="${header}"></div>
+<div class="form-style-5">
+  <form th:action="${'/status/filter/result'}" method="post" type="submit">
+    <fieldset >
+      <input type="text" name="name" placeholder="Наименование статуса *">
+      <input type="submit" value="Поиск" />
+    </fieldset>
+    <div th:each="el : ${result}">
+      <legend><span class="number"></span></legend>
+      <fieldset >
+        <p th:text="${el.getName()}"  name="name" >
+        <p th:text="${el.getSum()}"  name="sum" >
+        <p th:text="${el.getDiscount()()}"  name="discount" >
+      </fieldset>
+    </div>
+  </form>
+</div>
+</body>
+</html>

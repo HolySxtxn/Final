@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link href="/css/input.css" rel="stylesheet">
+  <title>Изменение статуса</title>
+</head>
+<body>
+<div th:insert="${header}"></div>
+<div class="form-style-5">
+  <form th:action="@{/status/{id}/edit(id=${status.id})}" th:object="${status}" method="post">
+    <fieldset >
+      <legend><span class="number"></span>Изменение статуса</legend>
+      <input th:field="*{name}" th:value="${status.getName()}" type="text" name="name" placeholder="Наименование статуса *">
+      <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+      <input th:field="*{sum}" th:value="${status.getSum()}" type="number" min="0" name="sum" placeholder="Сумма *" >
+      <div style="color: red" th:if="${#fields.hasErrors('sum')}" th:errors="*{sum}"></div>
+      <input th:field="*{discount}" th:value="${status.getDiscount()}" type="number" min="0" name="discount" placeholder="Скидка *">
+      <div style="color: red" th:if="${#fields.hasErrors('discount')}" th:errors="*{discount}"></div>
+    </fieldset>
+    <input type="submit" value="Изменить" />
+  </form>
+</div></body>
+</html>

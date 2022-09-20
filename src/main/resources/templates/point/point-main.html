@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="/css/input.css" rel="stylesheet">
+    <title>Все пункты</title>
+</head>
+<body>
+<div th:insert="${header}"></div>
+<div class="form-style-5">
+    <legend><span class="number"></span>Все пункты</legend>
+    <ul>
+        <form action="/point/filter" method="get">
+            <input type="submit" value="Фильтрация" />
+        </form>
+        <form action="/point/add" method="get">
+            <input type="submit" value="Добавить" />
+        </form>
+    </ul>
+    <table>
+        <div th:each="el : ${points}">
+            <legend><span class="number"></span></legend>
+            <fieldset >
+                <p th:text="${el.getStreet()}"  name="street" >
+                <p th:text="${el.getHome()}"  name="home" >
+                <p th:text="${el.getCorpus()}"  name="corpus" >
+                <p th:text="${el.getBuilding()}"  name="building" >
+                <form th:action="'/point/' + ${el.getId()} + '/edit'" method="get">
+                    <input type="submit" value="Редактировать" />
+                </form>
+                <form th:action="'/point/' + ${el.getId()} + '/remove'" method="post">
+                    <input type="submit" value="Удалить" />
+                </form>
+            </fieldset>
+        </div>
+    </table>
+</div>
+</body>
+</html>
+
+
+

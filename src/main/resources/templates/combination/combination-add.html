@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="/css/input.css" rel="stylesheet">
+    <title>Добавление ставки</title>
+</head>
+<body>
+<div th:insert="${header}"></div>
+<div class="form-style-5">
+    <form th:action="${'/combination/add'}" th:object="${combination}" method="post">
+        <fieldset >
+            <legend><span class="number"></span>Добавление ставки</legend>
+            <select  name="employeeid">
+                <div th:each="element : ${employee}">
+                    <option th:text="${element.id}+' '+${element.surname}+' '+${element.name}"></option>
+                </div>
+            </select>
+            <select  name="postname">
+                <div th:each="element : ${post}">
+                    <option th:text="${element.name}"></option>
+                </div>
+            </select>
+            <input th:field="*{part}" type ="number" min="0.5" max="1"  step="0.5" name="part" placeholder="Ставка *" pattern="^[0-9]\d*(\.\d+)?$">
+            <div style="color: red" th:if="${#fields.hasErrors('part')}" th:errors="*{part}"></div>
+        </fieldset>
+        <input type="submit" value="Добавить" />
+    </form>
+</div></body>
+</html>

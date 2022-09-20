@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="/css/input.css" rel="stylesheet">
+    <title>Добавление пункта</title>
+</head>
+<body>
+<div th:insert="${header}"></div>
+<div class="form-style-5">
+    <form th:action="${'/point/add'}" th:object="${point}" method="post">
+        <fieldset >
+            <legend><span class="number"></span>Добавление должности</legend>
+            <input th:field="*{street}" type="text" name="street" placeholder="Улица *">
+            <div style="color: red" th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></div>
+            <input th:field="*{home}" type="number" min="1" name="home" placeholder="Дом *" >
+            <div style="color: red" th:if="${#fields.hasErrors('home')}" th:errors="*{home}"></div>
+            <input th:field="*{corpus}" type="number" min="0" name="corpus" placeholder="Корпус " >
+            <div style="color: red" th:if="${#fields.hasErrors('corpus')}" th:errors="*{corpus}"></div>
+            <input th:field="*{building}" type="number" min="0" name="building" placeholder="Строение " >
+            <div style="color: red" th:if="${#fields.hasErrors('building')}" th:errors="*{building}"></div>
+        </fieldset>
+        <input type="submit" value="Добавить" />
+    </form>
+</div></body>
+</html>

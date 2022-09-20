@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="/css/input.css" rel="stylesheet">
+    <title>Все сотрудники</title>
+</head>
+<body>
+<div th:insert="${header}"></div>
+<div class="form-style-5">
+    <legend><span class="number"></span>Все сотрудники</legend>
+    <ul>
+        <form action="/employee/filter" method="get">
+            <input type="submit" value="Фильтрация" />
+        </form>
+        <form action="/employee/add" method="get">
+            <input type="submit" value="Добавить" />
+        </form>
+    </ul>
+    <table>
+        <div th:each="el : ${employees}">
+            <legend><span class="number"></span></legend>
+            <fieldset >
+                <p th:text="${el.getSurname()}+' '+${el.getName()}+' '+${el.getMiddlename()}"  name="surname" >
+                <p th:text="${el.getBirth()}"  name="birth" >
+                <p th:text="${el.getSeries()}+' '+ ${el.getNumber()}"  name="seiesnumber" >
+                <p th:text="${el.getInn()}"  name="inn" >
+                <p th:text="${el.getSnils()}"  name="snils" >
+                <form th:action="'/employee/' + ${el.getId()} + '/edit'" method="get">
+                    <input type="submit" value="Редактировать" />
+                </form>
+                <form th:action="'/employee/' + ${el.getId()} + '/remove'" method="post">
+                    <input type="submit" value="Удалить" />
+                </form>
+            </fieldset>
+        </div>
+    </table>
+</div>
+</body>
+</html>
+
+
+

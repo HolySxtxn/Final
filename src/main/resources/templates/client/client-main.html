@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="/css/input.css" rel="stylesheet">
+    <title>Все клиенты</title>
+</head>
+<body>
+<div th:insert="${header}"></div>
+<div class="form-style-5">
+    <legend><span class="number"></span>Все клиенты</legend>
+    <ul>
+        <form action="/client/filter" method="get">
+            <input type="submit" value="Фильтрация" />
+        </form>
+        <form action="/client/add" method="get">
+            <input type="submit" value="Добавить" />
+        </form>
+    </ul>
+    <table>
+        <div th:each="el : ${clients}">
+            <legend><span class="number"></span></legend>
+            <fieldset >
+                <p th:text="${el.getSurname()}+' '+${el.getName()}+' '+${el.getMiddlename()}"  name="surname" >
+                <p th:text="${el.getBirth()}"  name="birth" >
+                <p th:text="${el.getPhone()}"  name="phone" >
+                <p th:text="${el.getEmail()}"  name="email" >
+                <form th:action="'/client/' + ${el.getId()} + '/edit'" method="get">
+                    <input type="submit" value="Редактировать" />
+                </form>
+                <form th:action="'/client/' + ${el.getId()} + '/remove'" method="post">
+                    <input type="submit" value="Удалить" />
+                </form>
+            </fieldset>
+        </div>
+    </table>
+</div>
+</body>
+</html>
+
+
+

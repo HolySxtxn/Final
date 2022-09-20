@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="/css/input.css" rel="stylesheet">
+    <title>Добавление услуги</title>
+</head>
+<body>
+<div th:insert="${header}"></div>
+<div class="form-style-5">
+    <form th:action="${'/price/add'}" th:object="${price}" method="post">
+        <fieldset >
+            <legend><span class="number"></span>Добавление услуги</legend>
+            <input th:field="*{name}" type="text" name="name" placeholder="Наименование должности *">
+            <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+            <input th:field="*{price_sum}" type ="number" min="0" max="10000000"  step="0.01" name="price_sum" placeholder="Стоимость *" pattern="^[0-9]\d*(\.\d+)?$">
+            <div style="color: red" th:if="${#fields.hasErrors('price_sum')}" th:errors="*{price_sum}"></div>
+        </fieldset>
+        <input type="submit" value="Добавить" />
+    </form>
+</div></body>
+</html>

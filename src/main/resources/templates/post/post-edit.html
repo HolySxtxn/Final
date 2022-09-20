@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link href="/css/input.css" rel="stylesheet">
+  <title>Изменение должности</title>
+</head>
+<body>
+<div th:insert="${header}"></div>
+<div class="form-style-5">
+  <form th:action="@{/post/{id}/edit(id=${post.id})}" th:object="${post}" method="post">
+    <fieldset >
+      <legend><span class="number"></span>Изменение должности</legend>
+      <input th:field="*{name}" th:value="${post.getName()}" type="text" name="name" placeholder="Наименование должности *">
+      <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+      <input th:field="*{salary}" th:value="${post.getSalary()}" type ="number" min="0" max="10000000"  step="0.01" name="salary" placeholder="Оклад *" pattern="^[0-9]\d*(\.\d+)?$">
+      <div style="color: red" th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}"></div>
+    </fieldset>
+    <input type="submit" value="Изменить" />
+  </form>
+</div></body>
+</html>

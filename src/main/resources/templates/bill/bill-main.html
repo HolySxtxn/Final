@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="/css/input.css" rel="stylesheet">
+    <title>Все накладные</title>
+</head>
+<body>
+<div th:insert="${header}"></div>
+<div class="form-style-5">
+    <legend><span class="number"></span>Все ставки</legend>
+    <ul>
+        <form action="/bill/filter" method="get">
+            <input type="submit" value="Фильтрация" />
+        </form>
+        <form action="/bill/add" method="get">
+            <input type="submit" value="Добавить" />
+        </form>
+    </ul>
+    <table>
+        <div th:each="el : ${bills}">
+            <legend><span class="number"></span></legend>
+            <fieldset >
+                <p th:text="${el.getId()}"  name="id" >
+                <p th:text="${el.getDate()}"  name="date" >
+                <p th:text="'Кассир: '+${el.getEmployee().getSurname()}+' '+${el.getEmployee().getName()}+' '+${el.getEmployee().getMiddlename()}"  name="employee" >
+                <p th:text="'Пункт: '+${el.getPoint().getId()}+' '+${el.getPoint().getStreet()}+', д.'+${el.getPoint().getHome()}+', к.'+${el.getPoint().getBuilding()}+', стр.'+${el.getPoint().getCorpus()}"  name="point" >
+                <form th:action="'/bill/' + ${el.getId()}" method="get">
+                    <input type="submit" value="Состав" />
+                </form>
+                <form th:action="'/bill/' + ${el.getId()} + '/remove'" method="post">
+                    <input type="submit" value="Удалить" />
+                </form>
+
+            </fieldset>
+        </div>
+    </table>
+</div>
+</body>
+</html>
+
+
+

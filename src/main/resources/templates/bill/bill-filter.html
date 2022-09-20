@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link href="/css/input.css" rel="stylesheet">
+  <title>Фильтрация наклданых</title>
+</head>
+<body>
+<div th:insert="${header}"></div>
+<div class="form-style-5">
+  <form th:action="${'/bill/filter/result'}" method="post" type="submit">
+    <fieldset >
+      <input type="text" pattern="\+7\-[0-9]{3}\-[0-9]{3}\-[0-9]{2}\-[0-9]{2}" name="phone" placeholder="Номер телефона *">
+      <input type="submit" value="Поиск" />
+    </fieldset>
+    <div th:each="el : ${result}">
+      <legend><span class="number"></span></legend>
+      <fieldset >
+        <p th:text="${el.getDate()}"  name="date" >
+        <p th:text="'Кассир: '+${el.getEmployee().getSurname()}+' '+${el.getEmployee().getName()}+' '+${el.getEmployee().getMiddlename()}"  name="employee" >
+        <p th:text="'Пункт: '+${el.getPoint().getId()}+' '+${el.getPoint().getStreet()}+', д.'+${el.getPoint().getHome()}+', к.'+${el.getPoint().getBuilding()}+', стр.'+${el.getPoint().getCorpus()}"  name="point" >
+        <form th:action="'/bill/' + ${el.getId()} + '/remove'" method="post">
+          <input type="submit" value="Удалить" />
+        </form>
+      </fieldset>
+    </div>
+  </form>
+</div>
+</body>
+</html>

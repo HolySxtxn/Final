@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="/css/input.css" rel="stylesheet">
+    <title>Изменение пункта</title>
+</head>
+<body>
+<div th:insert="${header}"></div>
+<div class="form-style-5">
+    <form th:action="@{/user/{id}/edit(id=${user.id})}" th:object="${user}" method="post">
+        <fieldset >
+            <legend><span class="number"></span>Изменение статуса</legend>
+            <input th:field="*{username}" th:value="${user.getUsername()}" min="6" type="text" name="street" placeholder="Логин *">
+            <div style="color: red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+            <input th:field="*{password}" th:value="${user.getPassword()}" type="text" min="8" name="home" placeholder="Пароль *" >
+            <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+        </fieldset>
+        <input type="submit" value="Изменить" />
+    </form>
+</div></body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="/css/input.css" rel="stylesheet">
+    <title>Добавление состава</title>
+</head>
+<body>
+<div th:insert="${header}"></div>
+<div class="form-style-5">
+    <form  th:action="${'/order/add'}" th:object="${order}" method="post" >
+            <fieldset >
+                <legend><span class="number"></span>Добавление состава</legend>
+                <select  name="billid">
+                    <div th:each="element : ${bills}">
+                        <option th:text="${element.id}"></option>
+                    </div>
+                </select>
+                <select  name="pricelist">
+                    <div th:each="element : ${prices}">
+                        <option th:text="${element.name}"></option>
+                    </div>
+                </select>
+                <input  type="number" min="1" name="count" placeholder="Количество *">
+            </fieldset>
+            <input type="submit" value="Добавить"  />
+        </form>
+</div></body>
+</html>

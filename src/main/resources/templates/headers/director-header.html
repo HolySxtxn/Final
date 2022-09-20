@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="/css/menu.css" rel="stylesheet">
+    <title>Title</title>
+</head>
+<body>
+<details>
+    <summary></summary>
+    <nav class="menu">
+        <a href="/employee">Сотрудник</a>
+        <a href="/point">Пункты</a>
+        <a href="/price">Прайс</a>
+        <a href="/post">Должности</a>
+        <a href="/combination">Ставки</a>
+        <a>
+            <form th:action="@{/logout}" method="post">
+                <input type="submit" class="btn btn-outline-light me-2" value="Выйти из системы"/>
+            </form>
+        </a>
+    </nav>
+</details>
+</body>
+</html>

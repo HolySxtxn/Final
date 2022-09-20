@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="/css/input.css" rel="stylesheet">
+    <title>Добавление сотрудника</title>
+</head>
+<body>
+<div th:insert="${header}"></div>
+<div class="form-style-5">
+    <form th:action="${'/employee/add'}" th:object="${employee}" method="post">
+        <fieldset >
+            <legend><span class="number"></span>Добавление сотрудник</legend>
+            <input th:field="*{surname}" type="text" name="surname" placeholder="Фамиилия *">
+            <div style="color: red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></div>
+            <input th:field="*{name}" type="text"  name="name" placeholder="Имя *" >
+            <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+            <input th:field="*{middlename}" type="text"  name="middlename" placeholder="Отчество " >
+            <div style="color: red" th:if="${#fields.hasErrors('middlename')}" th:errors="*{middlename}"></div>
+            <input th:field="*{birth}" type="date"  name="birth" placeholder="Дата рождения * " >
+            <div style="color: red" th:if="${#fields.hasErrors('birth')}" th:errors="*{birth}"></div>
+            <input th:field="*{series}"  type="text"  name="series" placeholder="Серия паспорта * " >
+            <div style="color: red" th:if="${#fields.hasErrors('series')}" th:errors="*{series}"></div>
+            <input th:field="*{number}" type="text" name="number" placeholder="Номер паспорта *" >
+            <div style="color: red" th:if="${#fields.hasErrors('number')}" th:errors="*{number}"></div>
+            <input th:field="*{inn}" type="text" name="inn" placeholder="ИНН *">
+            <div style="color: red" th:if="${#fields.hasErrors('inn')}" th:errors="*{inn}"></div>
+            <input th:field="*{snils}" type="text"  name="snils" placeholder="СНИЛС *" >
+            <div style="color: red" th:if="${#fields.hasErrors('snils')}" th:errors="*{snils}"></div>
+
+            <div  th:object="${user}"  id="creationAccount">
+                <input th:field="*{username}" type="text" name="username" placeholder="Логин *">
+                <div style="color: red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+                <input th:field="*{password}" type="text"  name="password" placeholder="Пароль *" >
+                <div style="color: red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+                    <select name="role" class="form-control">
+                        <option th:each="r : ${T(com.example.PhotoMaster.models.Role).values()}"
+                                th:value="${r}"
+                                th:text="${r}">
+                        </option>
+                    </select>
+                </div>
+
+        </fieldset>
+        <input type="submit" value="Добавить" />
+    </form>
+</div></body>
+</html>

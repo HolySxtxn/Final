@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="/css/input.css" rel="stylesheet">
+    <title>Весь прейскурант</title>
+</head>
+<body>
+<div th:insert="${header}"></div>
+<div class="form-style-5">
+    <legend><span class="number"></span>Все услуги</legend>
+    <ul>
+        <form action="/price/filter" method="get">
+            <input type="submit" value="Фильтрация" />
+        </form>
+        <form action="/price/add" method="get">
+            <input type="submit" value="Добавить" />
+        </form>
+    </ul>
+    <table>
+        <div th:each="el : ${prices}">
+            <legend><span class="number"></span></legend>
+            <fieldset >
+                <p th:text="${el.getName()}"  name="name" >
+                <p th:text="${el.getPrice_sum()}"  name="price_sum" >
+                <form th:action="'/price/' + ${el.getId()} + '/edit'" method="get">
+                    <input type="submit" value="Редактировать" />
+                </form>
+                <form th:action="'/price/' + ${el.getId()} + '/remove'" method="post">
+                    <input type="submit" value="Удалить" />
+                </form>
+            </fieldset>
+        </div>
+    </table>
+</div>
+</body>
+</html>
+
+
+

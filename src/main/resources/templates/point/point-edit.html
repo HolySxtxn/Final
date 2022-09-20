@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <link href="/css/input.css" rel="stylesheet">
+  <title>Изменение пункта</title>
+</head>
+<body>
+<div th:insert="${header}"></div>
+<div class="form-style-5">
+  <form th:action="@{/point/{id}/edit(id=${point.id})}" th:object="${point}" method="post">
+    <fieldset >
+      <legend><span class="number"></span>Изменение статуса</legend>
+      <input th:field="*{street}" th:value="${point.getStreet()}" type="text" name="street" placeholder="Улица *">
+      <div style="color: red" th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></div>
+      <input th:field="*{home}" th:value="${point.getHome()}" type="number" min="1" name="home" placeholder="Дом *" >
+      <div style="color: red" th:if="${#fields.hasErrors('home')}" th:errors="*{home}"></div>
+      <input th:field="*{corpus}" th:value="${point.getCorpus()}" type="number" min="0" name="corpus" placeholder="Корпус " >
+      <div style="color: red" th:if="${#fields.hasErrors('corpus')}" th:errors="*{corpus}"></div>
+      <input th:field="*{building}" th:value="${point.getBuilding()}" type="number" min="0" name="building" placeholder="Строение " >
+      <div style="color: red" th:if="${#fields.hasErrors('building')}" th:errors="*{building}"></div>
+    </fieldset>
+    <input type="submit" value="Изменить" />
+  </form>
+</div></body>
+</html>

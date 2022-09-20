@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="/css/input.css" rel="stylesheet">
+    <title>Все участники программы лояльности</title>
+</head>
+<body>
+<div th:insert="${header}"></div>
+<div class="form-style-5">
+    <legend><span class="number"></span>Все участники программы лояльности</legend>
+    <ul>
+        <form action="/loyalty/filter" method="get">
+            <input type="submit" value="Фильтрация" />
+        </form>
+    </ul>
+    <table>
+        <div th:each="el : ${loyalties}">
+            <legend><span class="number"></span></legend>
+            <fieldset >
+                <p th:text="${el.getClient().getSurname()}+' '+${el.getClient().getName()}+' '+${el.getClient().getMiddlename()}"  name="name" >
+                <p th:text="${el.getClient().getPhone()}"  name="phone" >
+                <p th:text="${el.getStatus().getName()}"  name="name" >
+                <p th:text="${el.getStatus().getDiscount()}"  name="discount" >
+            </fieldset>
+            <form th:action="'/loyalty/' + ${el.getId()} + '/remove'" method="post">
+                <input type="submit" value="Удалить" />
+            </form>
+        </div>
+    </table>
+</div>
+</body>
+</html>
+
+
+

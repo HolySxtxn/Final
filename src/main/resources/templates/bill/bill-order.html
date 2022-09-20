@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="/css/input.css" rel="stylesheet">
+    <title>Все накладные</title>
+</head>
+<body>
+<div th:insert="${header}"></div>
+<div class="form-style-5">
+    <legend><span class="number"></span>Все ставки</legend>
+    <table>
+        <div th:each="el : ${orders}">
+            <legend><span class="number"></span></legend>
+            <fieldset >
+                <p th:text="${el.getPrice().getName()}"  name="price" >
+                <p th:text="'Стоимость: '+${el.getPrice().getPrice_sum()}"  name="sum" >
+                <p th:text="'Количество: '+${el.getCount()}"  name="count" >
+            </fieldset>
+        </div>
+    </table>
+</div>
+</body>
+</html>
+
+
+
